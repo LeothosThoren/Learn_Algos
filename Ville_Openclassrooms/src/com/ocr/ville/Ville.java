@@ -31,6 +31,7 @@ public class Ville {
     }
 
     //Constructerus avec paramètres
+<<<<<<< HEAD
     public Ville(String nomV, int nbreV, String paysV) throws NombreHabitantException, NomVilleException {
 
         if (nbreV < 0)
@@ -53,6 +54,22 @@ public class Ville {
     public static int getNombreInstancesBis() {
         return getNbreInstancesBis;
     }
+=======
+    public Ville(String nomV, int nbreV,String paysV ) throws NombreHabitantException {
+            if (nbreV < 0)
+                throw new NombreHabitantException();
+            else {
+                System.out.println("Création d'une ville avec paramètres !");
+                nomVille = nomV;
+                nomPays = paysV;
+                nbreHabitants = nbreV;
+                this.setCategorie();
+                nbreInstances++;
+                getNbreInstancesBis++;
+            }
+        }
+
+>>>>>>> a130f515d8076777f17afd801abee51cb898b51e
 
     /***************************************************
      *************ACCESSEURS / GETTERS ******************
@@ -62,6 +79,25 @@ public class Ville {
         return nomVille;
     }
 
+<<<<<<< HEAD
+=======
+    public String getNomPays() {
+        return nomPays;
+    }
+
+    public int getNbreHabitants() {
+        return nbreHabitants;
+    }
+
+    public char getCategorie() {
+        return categorie;
+    }
+
+    public static int getNombreInstancesBis() {
+        return getNbreInstancesBis;
+    }
+
+>>>>>>> a130f515d8076777f17afd801abee51cb898b51e
     /*****************************************************
      /**************MUTATEURS / SETTERS********************
      ****************************************************/
@@ -70,27 +106,36 @@ public class Ville {
         this.nomVille = nomVille;
     }
 
+<<<<<<< HEAD
     public String getNomPays() {
         return nomPays;
     }
 
+=======
+>>>>>>> a130f515d8076777f17afd801abee51cb898b51e
     public void setNomPays(String nomPays) {
         this.nomPays = nomPays;
     }
 
+<<<<<<< HEAD
     public int getNbreHabitants() {
         return nbreHabitants;
     }
 
+=======
+>>>>>>> a130f515d8076777f17afd801abee51cb898b51e
     public void setNbreHabitants(int nbreHabitants) {
         this.nbreHabitants = nbreHabitants;
         this.setCategorie();
     }
 
+<<<<<<< HEAD
     public char getCategorie() {
         return categorie;
     }
 
+=======
+>>>>>>> a130f515d8076777f17afd801abee51cb898b51e
     /***********************************************
      ******************  METHODES  *******************
      ***********************************************/
