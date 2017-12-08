@@ -92,11 +92,10 @@ public class Matrix
             if (matrix1[l].length != matrix2[l].length)
                 return false;
             //We sort the arrays to perform the occurences (think about the chars !)
-            Arrays.sort(matrix1[l]);
-            Arrays.sort(matrix2[l]);
+//            Arrays.sort(matrix1[l]);
+//            Arrays.sort(matrix2[l]);
             //check indexes
             for (int k = 0; k < matrix1[l].length; k++) {
-                //if it's different return false, else return true
                 if (matrix1[l][k] != matrix2[l][k])
                     return false;
             }
@@ -118,25 +117,13 @@ public class Matrix
     public static int[][] addMatrix(int matrix1[][], int matrix2[][])
 
     {
-
         int res[][] = copyMatrix(matrix1);
-        /*
-        /matrix1 = [50,60,55,67,70]
-                   [62,65,70,70,81]
-                   [72,66,77,80,69]
 
-        matrix2 = [5,6,55,76,7]
-                  [26,56,7,708,1]
-                  [276,6,778,6,9]
-
-       res must =  {55,66,110,143,77}
-                   {88,121,77,778,82}
-                   {348,72,855,86,78}
-         */
-
-
+        for (int i = 0; i < res.length && matrix1.length == matrix2.length; i++) {
+            for (int j = 0; j < res[i].length && matrix1[i].length == matrix2[i].length; j++)
+                res[i][j] = matrix1[i][j] + matrix2[i][j];
+        }
         return res;
-
     }
 
 
@@ -153,11 +140,17 @@ public class Matrix
     public static int[][] multMatrix(int matrix1[][], int matrix2[][])
 
     {
+        // check array initialization
+        int[][] res = copyMatrix(matrix1);
 
-        // int[][] res = new int[ ? ][ ? ];
+        for (int i = 0; i < matrix1.length && i < res.length; i++){
+            for (int j = 0; j < matrix2[i].length && j < res[i].length;j++){
+                res = new int [matrix1.length][matrix2[i].length];
+                res[i][j] = matrix1[i][i] * matrix2[j][j];
+            }
+        }
 
-
-        return matrix2;
+        return res;
 
     }
 
@@ -272,6 +265,10 @@ public class Matrix
 
         printMatrix(multiplied43);
 
+        printMatrix(multMatrix(matrix3, matrix4));
+
+        printMatrix(multMatrix(matrix4, matrix3));
+
 
         System.out.println("Matrix equal 1vs1: " + (matrixEqual(matrix1, matrix1) ? "Ok" : "Fail"));
 
@@ -280,6 +277,7 @@ public class Matrix
         System.out.println("Matrix equal 2vs1: " + (!matrixEqual(matrix2, matrix1) ? "Ok" : "Fail"));
 
         System.out.println("Matrix equal 3vs4: " + (!matrixEqual(matrix3, matrix4) ? "Ok" : "Fail"));
+
 
         System.out.println("Add 1+3 (invalid): " + (matrixEqual(addMatrix(matrix1, matrix3), matrix1) ? "Ok" : "Fail"));
 
@@ -300,7 +298,7 @@ public class Matrix
 
         System.out.println("Mult 1*3 (invalid): " + (matrixEqual(multMatrix(matrix1, matrix3), matrix1) ? "Ok" : "Fail"));
 
-        System.out.println("Mult 4*3: " + (matrixEqual(multMatrix(matrix4, matrix3), matrix4) ? "Ok" : "Fail"));
+        System.out.println("Mult 4*3: " + (matrixEqual(multMatrix(matrix4, matrix3), multiplied43) ? "Ok" : "Fail"));
 
         System.out.println("Mult 3*4: " + (matrixEqual(multMatrix(matrix3, matrix4), multiplied34) ? "Ok" : "Fail"));
 

@@ -12,11 +12,8 @@ public class Capitale extends Ville {
     }
 
     //Constructeur d'initialisation de capitale avec paramètre
-<<<<<<< HEAD
+
     public Capitale(String nom, int hab, String pays, String monument) throws NombreHabitantException, NomVilleException {
-=======
-    public Capitale(String nom, int hab, String pays, String monument) throws NombreHabitantException {
->>>>>>> a130f515d8076777f17afd801abee51cb898b51e
         super(nom, hab, pays);
         this.monument = monument;
     }

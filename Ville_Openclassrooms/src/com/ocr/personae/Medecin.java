@@ -1,9 +1,5 @@
 package com.ocr.personae;
-<<<<<<< HEAD
-import com.ocr.comportement.*;
-=======
 import com.ocr.personae.comportement.*;
->>>>>>> a130f515d8076777f17afd801abee51cb898b51e
 
 public class Medecin extends Personnage {
 
