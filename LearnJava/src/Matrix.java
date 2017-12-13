@@ -1,7 +1,3 @@
-import java.util.Arrays;
-
-import static java.util.Arrays.sort;
-
 public class Matrix
 
 {
@@ -143,12 +139,24 @@ public class Matrix
         // check array initialization
         int[][] res = copyMatrix(matrix1);
 
-        for (int i = 0; i < matrix1.length && i < res.length; i++){
-            for (int j = 0; j < matrix2[i].length && j < res[i].length;j++){
-                res = new int [matrix1.length][matrix2[i].length];
-                res[i][j] = matrix1[i][i] * matrix2[j][j];
+        if (matrix1.length == matrix2.length)
+            return res;
+
+        if (matrix1.length != matrix2[0].length)
+            return  null;
+
+        res = new int [matrix1.length][matrix2[0].length];
+
+            for (int i = 0; i < matrix1.length; i++) {
+
+                for (int j = 0; j < matrix1.length; j++) {
+
+                    for (int k = 0; k < matrix1[j].length; k++) {
+                        res[i][j] += matrix1[i][k] * matrix2[k][j];
+                    }
+                }
+
             }
-        }
 
         return res;
 
