@@ -50,6 +50,7 @@ public class Matrix
     public static void printMatrix(int matrix[][])
 
     {
+        //Remember TabFunction ^_^
         for (int[] aMatrix : matrix) {
             System.out.print("[");
             Boolean first = true;
@@ -80,19 +81,19 @@ public class Matrix
     public static Boolean matrixEqual(int matrix1[][], int matrix2[][])
 
     {
-        for (int l = 0; l < matrix1.length && l < matrix2.length; l++) {
+        for (int i = 0; i < matrix1.length && i < matrix2.length; i++) {
             //Check the row length
             if (matrix1.length != matrix2.length)
                 return false;
             //Check the column length
-            if (matrix1[l].length != matrix2[l].length)
+            if (matrix1[i].length != matrix2[i].length)
                 return false;
             //We sort the arrays to perform the occurences (think about the chars !)
 //            Arrays.sort(matrix1[l]);
 //            Arrays.sort(matrix2[l]);
             //check indexes
-            for (int k = 0; k < matrix1[l].length; k++) {
-                if (matrix1[l][k] != matrix2[l][k])
+            for (int k = 0; k < matrix1[i].length; k++) {
+                if (matrix1[i][k] != matrix2[i][k])
                     return false;
             }
         }
@@ -139,24 +140,28 @@ public class Matrix
         // check array initialization
         int[][] res = copyMatrix(matrix1);
 
-        if (matrix1.length == matrix2.length)
+        if (matrix1 == matrix2)
             return res;
 
-        if (matrix1.length != matrix2[0].length)
-            return  null;
+        int aRows = matrix1.length,
+                aCols = matrix1[0].length,
+                bRows = matrix2.length,
+                bCols = matrix2[0].length;
 
-        res = new int [matrix1.length][matrix2[0].length];
+        if (aCols == bRows) {
 
-            for (int i = 0; i < matrix1.length; i++) {
-
-                for (int j = 0; j < matrix1.length; j++) {
-
-                    for (int k = 0; k < matrix1[j].length; k++) {
+            res = new int[aRows][bCols];
+            //1st Level : line of the first array
+            for (int i = 0; i < aRows; i++) {
+                //2nd Level : handle the vector column of the second array
+                for (int j = 0; j < bCols; j++) {
+                    //3td Level : Column of the first array
+                    for (int k = 0; k < aCols; k++) {
                         res[i][j] += matrix1[i][k] * matrix2[k][j];
                     }
                 }
-
             }
+        }
 
         return res;
 
@@ -272,10 +277,6 @@ public class Matrix
         printMatrix(multiplied34);
 
         printMatrix(multiplied43);
-
-        printMatrix(multMatrix(matrix3, matrix4));
-
-        printMatrix(multMatrix(matrix4, matrix3));
 
 
         System.out.println("Matrix equal 1vs1: " + (matrixEqual(matrix1, matrix1) ? "Ok" : "Fail"));
