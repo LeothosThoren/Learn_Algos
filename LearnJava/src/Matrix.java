@@ -81,17 +81,14 @@ public class Matrix
     public static Boolean matrixEqual(int matrix1[][], int matrix2[][])
 
     {
+        if (matrix1.length != matrix2.length)
+            return false;
+
         for (int i = 0; i < matrix1.length && i < matrix2.length; i++) {
-            //Check the row length
-            if (matrix1.length != matrix2.length)
-                return false;
-            //Check the column length
+
             if (matrix1[i].length != matrix2[i].length)
                 return false;
-            //We sort the arrays to perform the occurences (think about the chars !)
-//            Arrays.sort(matrix1[l]);
-//            Arrays.sort(matrix2[l]);
-            //check indexes
+
             for (int k = 0; k < matrix1[i].length; k++) {
                 if (matrix1[i][k] != matrix2[i][k])
                     return false;
@@ -116,10 +113,19 @@ public class Matrix
     {
         int res[][] = copyMatrix(matrix1);
 
-        for (int i = 0; i < res.length && matrix1.length == matrix2.length; i++) {
-            for (int j = 0; j < res[i].length && matrix1[i].length == matrix2[i].length; j++)
+        if (matrix1.length != matrix2.length)
+            return res;
+
+        for (int i = 0; i < res.length; i++) {
+
+            if (matrix1[i].length != matrix2[i].length)
+                return res;
+
+            for (int j = 0; j < res[i].length; j++)
                 res[i][j] = matrix1[i][j] + matrix2[i][j];
         }
+
+
         return res;
     }
 
@@ -137,28 +143,26 @@ public class Matrix
     public static int[][] multMatrix(int matrix1[][], int matrix2[][])
 
     {
-        // check array initialization
-        int[][] res = copyMatrix(matrix1);
 
-        if (matrix1 == matrix2)
-            return res;
+        if (matrix1.length == 0 || matrix2.length == 0)
+            return matrix1;
 
         int aRows = matrix1.length,
                 aCols = matrix1[0].length,
                 bRows = matrix2.length,
                 bCols = matrix2[0].length;
 
-        if (aCols == bRows) {
+        if (aCols != bRows)
+            return matrix1;
 
-            res = new int[aRows][bCols];
-            //1st Level : line of the first array
-            for (int i = 0; i < aRows; i++) {
-                //2nd Level : handle the vector column of the second array
-                for (int j = 0; j < bCols; j++) {
-                    //3td Level : Column of the first array
-                    for (int k = 0; k < aCols; k++) {
-                        res[i][j] += matrix1[i][k] * matrix2[k][j];
-                    }
+        int res[][] = new int[aRows][bCols];
+        //1st Level : line of the first array
+        for (int i = 0; i < aRows; i++) {
+            //2nd Level : handle the vector column of the second array
+            for (int j = 0; j < bCols; j++) {
+                //3td Level : Column of the first array
+                for (int k = 0; k < aCols; k++) {
+                    res[i][j] += matrix1[i][k] * matrix2[k][j];
                 }
             }
         }
